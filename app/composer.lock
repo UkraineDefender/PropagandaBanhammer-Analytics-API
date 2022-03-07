@@ -1,0 +1,53 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a27c1432189e0d5d4a55e26c9bcc5f09",
+    "packages": [
+        {
+            "name": "wertog/foxy-mvc",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WeRtOG/FoxyMVC.git",
+                "reference": "5cdcab00df181a4d0030dccdcf4035614eefdcb2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WeRtOG/FoxyMVC/zipball/5cdcab00df181a4d0030dccdcf4035614eefdcb2",
+                "reference": "5cdcab00df181a4d0030dccdcf4035614eefdcb2",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WeRtOG\\FoxyMVC\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "PHP8 MVC Framework",
+            "support": {
+                "issues": "https://github.com/WeRtOG/FoxyMVC/issues",
+                "source": "https://github.com/WeRtOG/FoxyMVC/tree/main"
+            },
+            "time": "2021-10-14T01:44:56+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "wertog/foxy-mvc": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}

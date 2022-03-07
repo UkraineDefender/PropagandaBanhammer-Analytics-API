@@ -1,0 +1,5 @@
+{
+    "require": {
+        "wertog/foxy-mvc": "dev-main"
+    }
+}
