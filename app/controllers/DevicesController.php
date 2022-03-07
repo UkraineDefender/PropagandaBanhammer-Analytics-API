@@ -58,8 +58,10 @@ class DevicesController extends Controller
     public function SendReportResult(): JsonView
     {
         $ID = (string)($_GET['id'] ?? null) ?? null;
-        $ReportResult = (int)($_GET['result'] ?? null) ?? null;
-
+        $ReportResult = (string)($_GET['success'] ?? null) ?? null;
+        $ReportResult = $ReportResult == '1' || $ReportResult == 'true' || $ReportResult == '0' || $ReportResult == 'false' ? $ReportResult : null;
+        $ReportResult = $ReportResult == '1' || $ReportResult == 'true' ? true : false;
+        
         if($ID != null)
         {
             $Device = $this->DeviceList->GetByID($ID);
