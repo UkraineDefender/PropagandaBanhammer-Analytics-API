@@ -58,7 +58,9 @@ class DevicesController extends Controller
     public function SendReportResult(): JsonView
     {
         $ID = (string)($_GET['id'] ?? null) ?? null;
-        $ReportResult = filter_var($_GET['success'], FILTER_VALIDATE_BOOLEAN);
+        $ReportResult = $_GET['success'];
+        $ReportResult = $ReportResult == '1' || $ReportResult == 'true' || $ReportResult == '0' || $ReportResult == 'false' ? $ReportResult : null;
+        $ReportResult = $ReportResult == '1' || $ReportResult == 'true' ? true : false;
         
         if($ID != null)
         {
@@ -67,7 +69,7 @@ class DevicesController extends Controller
             {
                 switch($ReportResult)
                 {
-                    case 1:
+                    case false:
                         $Device->OnReportError();
                         return new JsonView([
                             'ok' => true,
@@ -75,7 +77,7 @@ class DevicesController extends Controller
                         ]);
                         break;
 
-                    case 2:
+                    case true:
                         $Device->OnReportSuccess();
                         return new JsonView([
                             'ok' => true,
