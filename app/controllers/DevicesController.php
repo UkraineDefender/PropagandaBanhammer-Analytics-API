@@ -58,7 +58,7 @@ class DevicesController extends Controller
     public function SendReportResult(): JsonView
     {
         $ID = (string)($_GET['id'] ?? null) ?? null;
-        $ReportResult = isset($_GET['success']) ? filter_var($_GET['success'], FILTER_VALIDATE_BOOLEAN) : null;
+        $ReportResult = filter_var($_GET['success'], FILTER_VALIDATE_BOOLEAN);
         
         if($ID != null)
         {
