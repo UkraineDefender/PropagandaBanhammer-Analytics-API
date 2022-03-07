@@ -7,8 +7,6 @@ use WeRtOG\Utils\DatabaseManager\Database;
 
 require 'vendor/autoload.php';
 
-$_SERVER['DOCUMENT_ROOT'] = dirname(__DIR__);
-
 define('MVC_ASSETS', dirname(__DIR__) . '/assets');
 define('MVC_MODELS', __DIR__ . '/models');
 define('MVC_CONTROLLERS', __DIR__ . '/controllers');
@@ -30,6 +28,6 @@ $ProjectModels = [
 
 Route::Start(
     ProjectNamespace: __NAMESPACE__,
-    ProjectPath: __DIR__,
+    ProjectPath: dirname(__DIR__),
     Models: $ProjectModels
 );
