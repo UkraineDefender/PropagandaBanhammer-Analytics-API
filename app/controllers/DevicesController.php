@@ -114,6 +114,38 @@ class DevicesController extends Controller
     }
 
     #[Action]
+    public function UpdateLastOnline(): JsonView
+    {
+        $ID = (string)($_GET['id'] ?? null) ?? null;
+
+        if($ID != null)
+        {
+            $Device = $this->DeviceList->GetByID($ID);
+            if($Device != null)
+            {
+                $Device->UpdateLastOnline();
+            }
+            else
+            {
+                return new JsonView([
+                    'ok' => false,
+                    'code' => 400,
+                    'error' => 'Bad request.'
+                ]);
+            }
+        }
+        else
+        {
+            return new JsonView([
+                'ok' => false,
+                'code' => 400,
+                'error' => 'Bad request.'
+            ]);
+        }
+    }
+
+
+    #[Action]
     public function Register(): JsonView
     {
         $NewDevice = Device::Create();
