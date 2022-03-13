@@ -21,10 +21,36 @@ class DevicesController extends Controller
     #[Action]
     public function GetDevices(): JsonView
     {
+        $Devices = (array)$this->DeviceList;
         return new JsonView([
             'ok' => true,
             'code' => 200,
-            'devices' => (array)$this->DeviceList
+            'devices_count' => count($Devices),
+            'devices' => $Devices
+        ]);
+    }
+
+    #[Action]
+    public function GetOnlineDevices(): JsonView
+    {
+        $OnlineDevices = [];
+
+        foreach((array)$this->DeviceList as $Device)
+        {
+            if($Device instanceof Device)
+            {
+                $TimeDiff = time() - $Device->LastOnline;
+
+                if($TimeDiff < 10)
+                    $OnlineDevices[] = $Device;
+            }
+        }
+
+        return new JsonView([
+            'ok' => true,
+            'code' => 200,
+            'devices_count' => count($OnlineDevices),
+            'devices' => $OnlineDevices
         ]);
     }
 
@@ -36,7 +62,6 @@ class DevicesController extends Controller
         if($ID != null)
         {
             $Device = $this->DeviceList->GetByID($ID);
-            $Device->LastOnline = 235;
 
             return new JsonView([
                 'ok' => true,
@@ -58,7 +83,7 @@ class DevicesController extends Controller
     public function SendReportResult(): JsonView
     {
         $ID = (string)($_GET['id'] ?? null) ?? null;
-        $ReportResult = $_GET['success'];
+        $ReportResult = $_GET['success'] ?? null;
         $ReportResult = $ReportResult == '1' || $ReportResult == 'true' || $ReportResult == '0' || $ReportResult == 'false' ? $ReportResult : null;
         $ReportResult = $ReportResult == '1' || $ReportResult == 'true' ? true : false;
         
